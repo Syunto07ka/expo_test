@@ -57,7 +57,7 @@ class WelcomeScreen extends React.Component {
         );
     }
     _handlePress = () => {
-        Linking.openURL("https://expo.io");
+        Linking.openURL("https://respon.me");
     };
 }
 const styles = StyleSheet.create({
