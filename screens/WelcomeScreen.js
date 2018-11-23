@@ -1,14 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, Dimensions, TouchableOpacity, Linking, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, Dimensions, TouchableOpacity, Linking } from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SLIDE_DATA = [
-    { title: 'App: 1', text: 'facebook', uri: require('../assets/facebook.jpg'), url: 'https://www.facebook.com/shunto.kakii.7' },
-    { title: 'App: 2', text: 'twitter', uri: require('../assets/twitter.jpg'), url: 'https://twitter.com/Kakki0310' },
-    { title: 'App: 3', text: 'google', uri: require('../assets/google.jpg'), url: 'https://www.google.co.jp' },
+    { title: 'App: 1', text: 'twitter', image: require('../assets/twitter.jpg'), uri: "https://twitter.com/Kakki0310" },
+
+    { title: 'App: 2', text: 'facebook', image: require('../assets/facebook.jpg'), uri: "https://www.facebook.com/shunto.kakii.7" },
+
+    { title: 'App: 3', text: 'google', image: require('../assets/google.jpg'), uri: "https://respon.me" },
+
+    { title: 'App: 4', text: 'respon', image: require('../assets/google.jpg'), uri: "https://www.lancers.jp"},
+
   ];
 
 class WelcomeScreen extends React.Component {
+    //_handlePress = (url) => {
+        //keepURL = url;
+        //console.log(keepURL);
+        //url = "";
+        //Linking.openURL(keepURL).catch(err => console.error('URLを開けませんでした。', err));
+    //};
     renderSlides() {
         return SLIDE_DATA.map((slide, index) => {
             return (
@@ -26,12 +37,14 @@ class WelcomeScreen extends React.Component {
                   </View>
                   <TouchableOpacity
                     style={{ flex: 2 }}
-                    onPress={this._handlePress}
+                    onPress={() => {
+                        console.log(index)
+                    }}
                   >
                   <Image
                      style={{ flex: 2 }}
                      resizeMode="contain"
-                     source={slide.uri}
+                     source={slide.image}
                   />
                   </TouchableOpacity>
                   <View  style={{
@@ -39,7 +52,8 @@ class WelcomeScreen extends React.Component {
                       justifyContent: 'center',
                       alignItems: 'center',
                   }}>
-                    <Text style={styles.text}>{index + 1} / 3</Text>
+                    <Text style={styles.text}>{index + 1} / 4</Text>
+                    <Text>{slide.uri}</Text>
                   </View>
                 </View>
             );
@@ -56,9 +70,6 @@ class WelcomeScreen extends React.Component {
             </ScrollView>
         );
     }
-    _handlePress = () => {
-        Linking.openURL("https://respon.me");
-    };
 }
 const styles = StyleSheet.create({
     container: {
