@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, Dimensions, TouchableOpacity, Linking } from 'react-native';
-
+import { StyleSheet, Text, View, Image, ScrollView, Dimensions, Linking } from 'react-native';
+   
 const SCREEN_WIDTH = Dimensions.get('window').width;
-const SLIDE_DATA = [
+var SLIDE_DATA = [
     { title: 'App: 1', text: 'twitter', image: require('../assets/twitter.jpg'), uri: "https://twitter.com/Kakki0310" },
 
     { title: 'App: 2', text: 'facebook', image: require('../assets/facebook.jpg'), uri: "https://www.facebook.com/shunto.kakii.7" },
@@ -14,12 +14,9 @@ const SLIDE_DATA = [
   ];
 
 class WelcomeScreen extends React.Component {
-    //_handlePress = (url) => {
-        //keepURL = url;
-        //console.log(keepURL);
-        //url = "";
-        //Linking.openURL(keepURL).catch(err => console.error('URLを開けませんでした。', err));
-    //};
+    _handlePress = (url) => {
+        Linking.openURL(url).catch(err => console.error('URLを開けませんでした。', err));
+    };
     renderSlides() {
         return SLIDE_DATA.map((slide, index) => {
             return (
@@ -35,25 +32,31 @@ class WelcomeScreen extends React.Component {
                     <Text style={styles.text}>{slide.title}</Text>
                     <Text style={styles.text}>{slide.text}</Text>
                   </View>
-                  <TouchableOpacity
-                    style={{ flex: 2 }}
-                    onPress={() => {
-                        console.log(index)
-                    }}
-                  >
-                  <Image
-                     style={{ flex: 2 }}
+                  <Text
+                   style={{ flex: 2 }}
+                   onPress={() => {
+                    this._handlePress(slide.uri);
+                }}>
+                    <Image
+                     style={styles.image}
                      resizeMode="contain"
                      source={slide.image}
-                  />
-                  </TouchableOpacity>
+                    />
+                    </Text>
                   <View  style={{
                       flex: 1,
                       justifyContent: 'center',
                       alignItems: 'center',
                   }}>
-                    <Text style={styles.text}>{index + 1} / 4</Text>
-                    <Text>{slide.uri}</Text>
+                    <Text style={styles.text}>
+                    {index} / 3
+                    </Text>
+                    <Text
+                      onPress={() => {
+                          this._handlePress(slide.uri);
+                      }}
+                    >{slide.uri}
+                    </Text>
                   </View>
                 </View>
             );
@@ -83,5 +86,9 @@ const styles = StyleSheet.create({
         color: 'white',
         padding: 5,
     },
+    image: {
+        width: 350,
+        height: 390,
+    }
 });
 export default WelcomeScreen;
