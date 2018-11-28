@@ -8,14 +8,20 @@ import AddScreen from './screens/AddScreen';
 import ProfileScreen from './screens/ProfileScreen';
 
 
+const MainTab = createBottomTabNavigator({
+  homeStack: { screen: HomeScreen },
+  addStack: { screen: AddScreen },
+  profileStack: { screen: ProfileScreen }
+});
 
 const NavigatorTab = createBottomTabNavigator({
-        welcome: { screen: WelcomeScreen },
-        main: createBottomTabNavigator({
-          homeStack: { screen: HomeScreen },
-          addStack: { screen: AddScreen },
-          profileStack: { screen: ProfileScreen },
-        })
-      });
+  welcome: { screen: WelcomeScreen,
+             navigationOptions: { tabBarVisible: false }
+           },
+  main: { screen: MainTab,
+          navigationOptions: { tabBarVisible: true }
+        },
+});
+
 
 export default createAppContainer(NavigatorTab);

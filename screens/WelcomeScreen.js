@@ -49,13 +49,7 @@ class WelcomeScreen extends React.Component {
                       alignItems: 'center',
                   }}>
                     <Text style={styles.text}>
-                    {index} / 3
-                    </Text>
-                    <Text
-                      onPress={() => {
-                          this._handlePress(slide.uri);
-                      }}
-                    >{slide.uri}
+                    {index + 1} / 4
                     </Text>
                   </View>
                 </View>
