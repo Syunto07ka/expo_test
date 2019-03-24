@@ -7,15 +7,15 @@ var SLIDE_DATA = [
 
     { title: 'App: 2', text: 'facebook', image: require('../assets/facebook.jpg'), uri: "https://www.facebook.com/shunto.kakii.7" },
 
-    { title: 'App: 3', text: 'google', image: require('../assets/google.jpg'), uri: "https://respon.me" },
+    { title: 'App: 3', text: 'google', image: require('../assets/google.jpg'), uri: "https://google.jp" },
 
-    { title: 'App: 4', text: 'respon', image: require('../assets/google.jpg'), uri: "https://www.lancers.jp"},
+    { title: 'App: 4', text: 'respon', image: require('../assets/google.jpg'), uri: "https://respon.me"},
 
   ];
 
 class WelcomeScreen extends React.Component {
     _handlePress = (url) => {
-        Linking.openURL(url).catch(err => console.error('URLを開けませんでした。', err));
+        Linking.openURL(url).catch(err => error('URLを開けませんでした。', err));
     };
     renderSlides() {
         return SLIDE_DATA.map((slide, index) => {
@@ -27,16 +27,17 @@ class WelcomeScreen extends React.Component {
                   <View style={{ 
                     flex: 1,
                     justifyContent: 'center',
-                    alignItems: 'center'
                     }}>
+                    <View>
                     <Text style={styles.text}>{slide.title}</Text>
                     <Text style={styles.text}>{slide.text}</Text>
+                    </View>
                   </View>
                   <Text
                    style={{ flex: 2 }}
                    onPress={() => {
                     this._handlePress(slide.uri);
-                }}>
+                   }}>
                     <Image
                      style={styles.image}
                      resizeMode="contain"

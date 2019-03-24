@@ -16,7 +16,7 @@ const MainTab = createBottomTabNavigator({
 
 const NavigatorTab = createBottomTabNavigator({
   welcome: { screen: WelcomeScreen,
-             navigationOptions: { tabBarVisible: false }
+             // navigationOptions: { tabBarVisible: false }
            },
   main: { screen: MainTab,
           navigationOptions: { tabBarVisible: true }
